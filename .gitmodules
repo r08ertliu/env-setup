@@ -8,3 +8,42 @@
 [submodule "dotfiles/tmux/plugins/tmux-sensible"]
 	path = dotfiles/tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible.git
+[submodule "dotfiles/vim/plugged/fzf.vim"]
+	path = dotfiles/vim/plugged/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "dotfiles/vim/plugged/star-search"]
+	path = dotfiles/vim/plugged/star-search
+	url = https://github.com/vim-scripts/star-search.git
+[submodule "dotfiles/vim/plugged/tagbar"]
+	path = dotfiles/vim/plugged/tagbar
+	url = https://github.com/preservim/tagbar.git
+[submodule "dotfiles/vim/plugged/vim-airline"]
+	path = dotfiles/vim/plugged/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "dotfiles/vim/plugged/vim-airline-themes"]
+	path = dotfiles/vim/plugged/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "dotfiles/vim/plugged/vim-autoread"]
+	path = dotfiles/vim/plugged/vim-autoread
+	url = https://github.com/djoshea/vim-autoread.git
+[submodule "dotfiles/vim/plugged/vim-cpp-enhanced-highlight"]
+	path = dotfiles/vim/plugged/vim-cpp-enhanced-highlight
+	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
+[submodule "dotfiles/vim/plugged/vim-fugitive"]
+	path = dotfiles/vim/plugged/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "dotfiles/vim/plugged/vim-go"]
+	path = dotfiles/vim/plugged/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "dotfiles/vim/plugged/vim-obsession"]
+	path = dotfiles/vim/plugged/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
+[submodule "dotfiles/vim/plugged/cscope-maps"]
+	path = dotfiles/vim/plugged/cscope-maps
+	url = https://github.com/r08ertliu/cscope-maps.git
+[submodule "dotfiles/vim/plugged/cscope_dynamic"]
+	path = dotfiles/vim/plugged/cscope_dynamic
+	url = https://github.com/r08ertliu/cscope_dynamic.git
+[submodule "dotfiles/vim/plugged/vim-wombat-scheme"]
+	path = dotfiles/vim/plugged/vim-wombat-scheme
+	url = https://github.com/r08ertliu/vim-wombat-scheme.git
