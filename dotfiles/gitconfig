@@ -1,0 +1,28 @@
+[user]
+	name =
+	email =
+[filter "lfs"]
+	smudge = git-lfs smudge --skip %f
+	process = git-lfs filter-process --skip
+	required = true
+	clean = git-lfs clean -- %f
+[filter "gitconf"]
+        clean = sh "misc/git_conf_filter.sh"
+[diff]
+  #external = /home/robert_liu/tool/git-meld.sh
+[core]
+	editor = vim
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	cp = cherry-pick
+	meld = difftool -t meld -d
+	l = log -12 --oneline --decorate --color
+	ll = log -6 --decorate --color
+	lc = log -6 --graph --color
+[push]
+	default = current
+[pull]
+	rebase = true

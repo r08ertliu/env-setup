@@ -1,0 +1,147 @@
+set tabstop=8    "tab width
+set shiftwidth=8 "indent width per level
+"set expandtab    "expand tab to space
+set cursorline
+set autoindent
+set hlsearch     "highlight serarch result
+set incsearch    "auto jump while search
+set wildmenu     "command auto complete menu"
+set showcmd      "display vim command
+
+" Allow us to use Ctrl-s and Ctrl-q as keybinds
+silent !stty -ixon
+
+" Restore default behaviour when leaving Vim.
+autocmd VimLeave * silent !stty ixon
+
+" Plugin
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+" ui
+Plug 'r08ertliu/vim-wombat-scheme' " Colorscheme wombat
+Plug 'vim-airline/vim-airline', { 'tag': 'v0.10' } " Status line
+Plug 'vim-airline/vim-airline-themes' " Status line
+Plug 'octol/vim-cpp-enhanced-highlight' " Highlight cpp
+
+" enhance
+Plug 'djoshea/vim-autoread' " Auto reload while change
+Plug 'r08ertliu/cscope_dynamic' " Auto update cscope DB
+Plug 'tpope/vim-obsession'  " Continuously updated session files
+Plug 'fatih/vim-go'         " Golang
+
+" move
+Plug 'r08ertliu/cscope-maps' " Cscope mapping
+Plug 'majutsushi/tagbar' " Tag list
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
+Plug 'junegunn/fzf.vim' " Fuzzy finder plugin
+Plug 'vim-scripts/star-search' " Do not jump at first highlight search
+
+" git
+Plug 'tpope/vim-fugitive' " Git wrapper
+call plug#end()
+
+" Workaround cursor moved slowly in tagbar window
+autocmd FileType tagbar setlocal nocursorline nocursorcolumn
+
+" Interface
+set laststatus=2
+"set background=dark
+colorscheme wombat
+let g:airline_theme='wombat'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 0
+let g:airline#extensions#whitespace#show_message = 0
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
+highlight Search       cterm=NONE ctermbg=yellow ctermfg=black
+highlight Visual       cterm=NONE ctermbg=240 ctermfg=NONE
+highlight ModeMsg      cterm=BOLD ctermbg=black ctermfg=cyan
+highlight CursorLine   cterm=NONE ctermbg=236
+highlight MatchParen   ctermbg=208
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_right_sep = '«'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+"set list listchars=tab:\|\ ,trail:\ 
+highlight TrailEOL ctermbg=DarkGray guibg=DarkGray
+augroup MatchTrailEOL
+    autocmd!
+    autocmd winEnter,BufEnter * call clearmatches() | call matchadd("TrailEOL", '\s\+$')
+augroup END
+
+let g:tagbar_sort = 0 " Sort by source code order
+let g:tagbar_use_cache = 0
+
+" Hotkey
+nmap <F2> :TagbarToggle<CR>
+nmap <F4> :FZF<CR>
+nmap <F5> :!cscope -bqR<CR>:!ctags -R<CR>:cs reset<CR>
+nmap <F6> <Plug>CscopeDBInit<CR>
+nmap <F9> :tabm -1<CR>
+nmap <F10> :tabm +1<CR>
+
+" set vim-go mapleader
+let mapleader = ","
+
+" vim-go custom mappings
+autocmd FileType go nmap <Leader>s <Plug>(go-implements)
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+autocmd FileType go nmap <Leader>gd <Plug>(go-doc)
+autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+autocmd FileType go nmap <Leader>ce <Plug>(go-callees)
+autocmd FileType go nmap <Leader>cr <Plug>(go-callers)
+autocmd FileType go nmap <Leader>r <Plug>(go-referrers)
+autocmd FileType go nmap <Leader>ds <Plug>(go-def-split)
+autocmd FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+autocmd FileType go nmap <Leader>d <Plug>(go-def-tab)
+autocmd FileType go nmap <Leader>e <Plug>(go-rename)
+
+set ut=150 " Refresh speed
+
+" Augmenting Ag command using fzf#vim#with_preview function
+" "   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+" "     * For syntax-highlighting, Ruby and any of the following tools are
+" required:
+" "       - Highlight:
+" http://www.andre-simon.de/doku/highlight/en/highlight.php
+" "       - CodeRay: http://coderay.rubychan.de/
+" "       - Rouge: https://github.com/jneen/rouge
+" "
+" "   :Ag  - Start fzf with hidden preview window that can be enabled with "?"
+" key
+" "   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \ <bang>0 ? fzf#vim#with_preview('up:60%')
+  \ : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \ <bang>0)
+
+let g:statusline_cscope_flag = ""
+set statusline=[%n]%<%f\ %h%m%r\ %=\
+set statusline+=%(\ [%{g:statusline_cscope_flag}]\ \ \ %)
+set statusline+=%-14.(%l,%c%V%)\ %P
+function! Cscope_dynamic_update_hook(updating)
+	if a:updating
+		let g:statusline_cscope_flag = "C"
+	else
+		let g:statusline_cscope_flag = ""
+	endif
+	execute "redrawstatus!"
+endfunction
+call Cscope_dynamic_update_hook(0)
