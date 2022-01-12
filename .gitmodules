@@ -50,3 +50,6 @@
 [submodule "dotfiles/tmux/plugins/tmux-prefix-highlight"]
 	path = dotfiles/tmux/plugins/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
+[submodule "dotfiles/tmux/plugins/tmux-mem-cpu-load"]
+	path = dotfiles/tmux/plugins/tmux-mem-cpu-load
+	url = https://github.com/thewtex/tmux-mem-cpu-load.git

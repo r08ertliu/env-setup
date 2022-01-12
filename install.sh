@@ -24,6 +24,14 @@ function exec_cmd() {
 # Update submodules
 git submodule update --init --recursive
 
+# Build tmux-mem-cpu-load
+check_cmd cmake
+check_cmd make
+pushd ${PWD}/dotfiles/tmux/plugins/tmux-mem-cpu-load >> ${LOG_PATH}
+exec_cmd "cmake ."
+exec_cmd "make"
+popd >> ${LOG_PATH}
+
 # Backup current dotfiles
 echo "Backup dotfiles"
 BACKUP_DIR=${PREFIX}/dotfiles_bak
