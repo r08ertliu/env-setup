@@ -1,6 +1,25 @@
 #!/bin/bash
 
 PREFIX=${HOME}
+SCRIPT_FULL_PATH=$(readlink -f $0)
+SCRIPT_DIR=$(dirname ${SCRIPT_FULL_PATH})
+LOG_PATH=${SCRIPT_DIR}/install.log
+
+function check_cmd() {
+        which ${1} > /dev/null 2>&1
+        if [ ${?} != 0 ]; then
+                echo "Command \"${1}\" not found"
+                exit 1
+        fi
+}
+
+function exec_cmd() {
+        ${1} >> ${LOG_PATH}
+        if [ ${?} != 0 ]; then
+                echo "Command \"${1}\" failed with ${?}"
+                exit ${?}
+        fi
+}
 
 # Update submodules
 git submodule update --init --recursive
