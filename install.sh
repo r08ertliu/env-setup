@@ -3,7 +3,7 @@
 PREFIX=${HOME}
 SCRIPT_FULL_PATH=$(readlink -f $0)
 SCRIPT_DIR=$(dirname ${SCRIPT_FULL_PATH})
-LOG_PATH=${SCRIPT_DIR}/install.log
+LOG_PATH=${SCRIPT_DIR}/log
 
 function check_cmd() {
         which ${1} > /dev/null 2>&1
@@ -25,6 +25,7 @@ function exec_cmd() {
 git submodule update --init --recursive
 
 # Backup current dotfiles
+echo "Backup dotfiles"
 BACKUP_DIR=${PREFIX}/dotfiles_bak
 if [ -d "${BACKUP_DIR}" ]; then
 	read -p "Backup dir: ${BACKUP_DIR} is exist, remove it (y/[N])?: " ans
@@ -81,7 +82,8 @@ ln -s ${PWD}/dotfiles/vim ${vim_path}
 ln -s ${PWD}/dotfiles/vimrc ${vimrc_path}
 
 # Install fuzzy finder
+echo "Install fzf"
 if [ ! -f "${HOME}/.fzf/install" ]; then
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 fi
-${HOME}/.fzf/install --all
+${HOME}/.fzf/install --all >> ${LOG_PATH}
