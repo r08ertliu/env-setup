@@ -8,8 +8,17 @@ git submodule update --init --recursive
 # Backup current dotfiles
 BACKUP_DIR=${PREFIX}/dotfiles_bak
 if [ -d "${BACKUP_DIR}" ]; then
-	echo "Backup dir: ${BACKUP_DIR} is exist!!"
-	exit 1
+	read -p "Backup dir: ${BACKUP_DIR} is exist, remove it (y/[N])?: " ans
+	case ${ans} in
+		y|Y|yes|Yes)
+			echo "Remove old backup dir"
+			rm -rf ${BACKUP_DIR}
+			;;
+		*)
+			echo "Abort"
+			exit 0
+			;;
+	esac
 fi
 
 mkdir ${BACKUP_DIR}
