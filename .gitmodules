@@ -47,3 +47,6 @@
 [submodule "dotfiles/vim/plugged/vim-wombat-scheme"]
 	path = dotfiles/vim/plugged/vim-wombat-scheme
 	url = https://github.com/r08ertliu/vim-wombat-scheme.git
+[submodule "dotfiles/tmux/plugins/tmux-prefix-highlight"]
+	path = dotfiles/tmux/plugins/tmux-prefix-highlight
+	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
