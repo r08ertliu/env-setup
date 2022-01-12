@@ -1,2 +1,3 @@
 dotfiles/tmux/resurrect
 dotfiles/vim/.netrwhist
+*.swp
