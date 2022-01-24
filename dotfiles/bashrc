@@ -50,3 +50,8 @@ export PAGER=''
 # Enable go mod
 export GO111MODULE=auto
 
+# History setting
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s histappend
