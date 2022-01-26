@@ -8,8 +8,6 @@
 	clean = git-lfs clean -- %f
 [filter "gitconf"]
         clean = sh "misc/git_conf_filter.sh"
-[diff]
-  #external = /home/robert_liu/tool/git-meld.sh
 [core]
 	editor = vim
 [alias]
