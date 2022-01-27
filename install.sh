@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ADVANCE=0
+ADDITIONAL=0
 PREFIX=${HOME}
 SCRIPT_FULL_PATH=$(readlink -f $0)
 SCRIPT_DIR=$(dirname ${SCRIPT_FULL_PATH})
@@ -8,7 +8,7 @@ LOG_PATH=${SCRIPT_DIR}/log
 
 function usage() {
 	echo "Usage: $0 [-ah]"
-	echo "    -a advance mode"
+	echo "    -a additional feature"
 	echo "    -h display usage"
 	exit 1
 }
@@ -36,7 +36,7 @@ function exec_cmd() {
 while getopts "ah" opt; do
 	case "${opt}" in
 		a)
-			ADVANCE=1
+			ADDITIONAL=1
 			;;
 		h)
 			usage
@@ -53,8 +53,8 @@ git submodule update --init --recursive
 # tmux-mem-cpu-load
 pushd ${PWD}/dotfiles/tmux/plugins/tmux-mem-cpu-load >> ${LOG_PATH}
 git clean -ffdx > /dev/null 2>&1
-if [ ${ADVANCE} == 1 ]; then
-	log "Advanced mode"
+if [ ${ADDITIONAL} == 1 ]; then
+	log "Additional feature"
 	log "Build tmux-mem-cpu-load"
 	check_cmd g++
 	check_cmd cmake
@@ -62,7 +62,7 @@ if [ ${ADVANCE} == 1 ]; then
 	exec_cmd "cmake ."
 	exec_cmd "make"
 else
-	log "Normal mode"
+	log "Normal feature"
 fi
 popd >> ${LOG_PATH}
 
