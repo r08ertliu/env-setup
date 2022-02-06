@@ -58,3 +58,6 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 shopt -s histappend
+
+# Use silver searcher as FZF default command
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore *cscope* --ignore tags -l -g ""'

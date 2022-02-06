@@ -33,6 +33,7 @@ Plug 'djoshea/vim-autoread' " Auto reload while change
 Plug 'r08ertliu/cscope_dynamic' " Auto update cscope DB
 Plug 'tpope/vim-obsession'  " Continuously updated session files
 Plug 'fatih/vim-go'         " Golang
+Plug 'r08ertliu/cscope-fzf' " Integrate cscope with fzf-vim
 
 " move
 Plug 'r08ertliu/cscope-maps' " Cscope mapping

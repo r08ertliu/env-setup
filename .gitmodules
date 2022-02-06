@@ -53,3 +53,6 @@
 [submodule "dotfiles/tmux/plugins/tmux-mem-cpu-load"]
 	path = dotfiles/tmux/plugins/tmux-mem-cpu-load
 	url = https://github.com/thewtex/tmux-mem-cpu-load.git
+[submodule "dotfiles/vim/plugged/cscope-fzf"]
+	path = dotfiles/vim/plugged/cscope-fzf
+	url = https://github.com/r08ertliu/cscope-fzf.git
