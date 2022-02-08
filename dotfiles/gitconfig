@@ -10,9 +10,6 @@
         clean = sh "misc/git_conf_filter.sh"
 [core]
 	editor = vim
-	pager = delta
-[interactive]
-	diffFilter = delta --color-only
 [alias]
 	co = checkout
 	br = branch
@@ -26,19 +23,5 @@
 	default = current
 [pull]
 	rebase = true
-[diff]
-	colorMoved = default
-[delta]
-	navigate = true
-	side-by-side = true
-	minus-emph-style = syntax bold "#870000"
-	minus-style = syntax "#5f0000"
-	plus-emph-style = syntax bold "#008700"
-	plus-style= syntax "#005f00"
-	file-style = brightwhite brightblack
-	file-decoration-style = "#5f87d7" ul
-	hunk-header-style = line-number syntax
-	hunk-header-line-number-style = brightblack
-	hunk-header-decoration-style = "#5f87d7" box
-	line-numbers-left-style = "#5f87d7"
-	line-numbers-right-style = "#5f87d7"
+[include]
+	path = .gitconfig.delta

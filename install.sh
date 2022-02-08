@@ -95,6 +95,13 @@ if [ -f "${gitconfig_path}" ]; then
 	mv ${gitconfig_path} ${BACKUP_DIR}
 fi
 
+if [ ${ADDITIONAL} == 1 ]; then
+	gitconfig_delta_path=${PREFIX}/.gitconfig.delta
+	if [ -f "${gitconfig_delta_path}" ]; then
+		mv ${gitconfig_delta_path} ${BACKUP_DIR}
+	fi
+fi
+
 tmux_path=${PREFIX}/.tmux
 if [ -d "${tmux_path}" ]; then
 	mv ${tmux_path} ${BACKUP_DIR}
@@ -118,6 +125,9 @@ fi
 # Link dotfiles
 ln -s ${PWD}/dotfiles/bashrc ${bashrc_path}
 ln -s ${PWD}/dotfiles/gitconfig ${gitconfig_path}
+if [ ${ADDITIONAL} == 1 ]; then
+	ln -s ${PWD}/dotfiles/gitconfig.delta ${PREFIX}/.gitconfig.delta
+fi
 ln -s ${PWD}/dotfiles/tmux ${tmux_path}
 ln -s ${PWD}/dotfiles/tmux.conf ${tmux_conf_path}
 ln -s ${PWD}/dotfiles/vim ${vim_path}
