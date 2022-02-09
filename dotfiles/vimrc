@@ -23,27 +23,27 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " ui
-Plug 'r08ertliu/vim-wombat-scheme' " Colorscheme wombat
-Plug 'vim-airline/vim-airline', { 'tag': 'v0.10' } " Status line
-Plug 'vim-airline/vim-airline-themes' " Status line
+Plug 'r08ertliu/vim-wombat-scheme'      " Colorscheme wombat
+Plug 'vim-airline/vim-airline'          " Status line
+Plug 'vim-airline/vim-airline-themes'   " Status line
 Plug 'octol/vim-cpp-enhanced-highlight' " Highlight cpp
 
 " enhance
-Plug 'djoshea/vim-autoread' " Auto reload while change
+Plug 'djoshea/vim-autoread'     " Auto reload while change
 Plug 'r08ertliu/cscope_dynamic' " Auto update cscope DB
-Plug 'tpope/vim-obsession'  " Continuously updated session files
-Plug 'fatih/vim-go'         " Golang
-Plug 'r08ertliu/cscope-fzf' " Integrate cscope with fzf-vim
+Plug 'tpope/vim-obsession'      " Continuously updated session files
+Plug 'fatih/vim-go'             " Golang
+Plug 'r08ertliu/cscope-fzf'     " Integrate cscope with fzf-vim
 
 " move
-Plug 'r08ertliu/cscope-maps' " Cscope mapping
-Plug 'majutsushi/tagbar' " Tag list
+Plug 'r08ertliu/cscope-maps'   " Cscope mapping
+Plug 'majutsushi/tagbar'       " Tag list
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
-Plug 'junegunn/fzf.vim' " Fuzzy finder plugin
+Plug 'junegunn/fzf.vim'        " Fuzzy finder plugin
 Plug 'vim-scripts/star-search' " Do not jump at first highlight search
 
 " git
-Plug 'tpope/vim-fugitive' " Git wrapper
+Plug 'tpope/vim-fugitive'      " Git wrapper
 call plug#end()
 
 " Workaround cursor moved slowly in tagbar window
