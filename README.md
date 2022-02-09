@@ -1,23 +1,20 @@
-# README
-
-## Feature
-
+# env-setup
+Quickly setup environment for development
 
 ## Installation
-Normal feature
+### Normal feature
 ```
 ./install
 ```
-Additional feature
-1. tmux-mem-cpu-load: Display memory, CPU loading at tmux status bar.
-
-    Installation dependency packages: `g++` `make` `cmake`
+### Additional feature
+- tmux-mem-cpu-load: Display memory, CPU loading at tmux status bar.
+Dependencies: `g++`, `make`, `cmake`, [delta](https://github.com/dandavison/delta)
 ```
 ./install -a
 ```
 
-
-## Runtime Dependency
+## Dependencies
+### Must have
 Ubuntu 18.04/20.04
 
     sudo apt install cscope exuberant-ctags silver_searcher-ag
@@ -25,3 +22,7 @@ Ubuntu 18.04/20.04
 Centos 8
 
     sudo yum install cscope ctags the_silver_searcher
+
+### Optional
+- [delta](https://github.com/dandavison/delta): A syntax-highlighting pager for git, diff, and grep output
+- [bat](https://github.com/sharkdp/bat): A cat(1) clone with syntax highlighting and Git integration.
