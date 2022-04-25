@@ -17,7 +17,7 @@ Dependencies: `g++`, `make`, `cmake`, [delta](https://github.com/dandavison/delt
 ### Must have
 Ubuntu 18.04/20.04
 
-    sudo apt install cscope exuberant-ctags silver_searcher-ag
+    sudo apt install cscope exuberant-ctags silversearcher-ag
 
 Centos 8
 
