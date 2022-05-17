@@ -8,7 +8,9 @@ Quickly setup environment for development
 ```
 ### Additional feature
 - tmux-mem-cpu-load: Display memory, CPU loading at tmux status bar.
-Dependencies: `g++`, `make`, `cmake`, [delta](https://github.com/dandavison/delta)
+    - Dependencies: `g++`, `make`, `cmake`
+- Better git diff: Present with github style.
+    - Dependencies: [delta](https://github.com/dandavison/delta), [bat](https://github.com/sharkdp/bat)
 ```
 ./install -a
 ```
