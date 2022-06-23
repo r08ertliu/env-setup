@@ -19,7 +19,7 @@ Quickly setup environment for development
 ### Must have
 Ubuntu 18.04/20.04
 
-    sudo apt install cscope exuberant-ctags silversearcher-ag
+    sudo apt install cscope universal-ctags silversearcher-ag
 
 Centos 8
 
