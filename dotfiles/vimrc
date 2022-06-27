@@ -92,7 +92,7 @@ let g:tagbar_use_cache = 0
 " Hotkey
 nmap <F2> :TagbarToggle<CR>
 nmap <F4> :FZF<CR>
-nmap <F5> :!cscope -bqR<CR>:!ctags -R<CR>:cs reset<CR>
+nmap <F5> :!ctags -R<CR>
 nmap <F6> <Plug>CscopeDBInit<CR>
 nmap <F9> :tabm -1<CR>
 nmap <F10> :tabm +1<CR>
