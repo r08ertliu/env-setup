@@ -56,3 +56,6 @@
 [submodule "dotfiles/vim/plugged/cscope-fzf"]
 	path = dotfiles/vim/plugged/cscope-fzf
 	url = https://github.com/r08ertliu/cscope-fzf.git
+[submodule "dotfiles/vim/plugged/vim-log-highlighting"]
+	path = dotfiles/vim/plugged/vim-log-highlighting
+	url = git@github.com:r08ertliu/vim-log-highlighting.git

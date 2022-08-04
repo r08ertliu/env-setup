@@ -27,6 +27,7 @@ Plug 'r08ertliu/vim-wombat-scheme'      " Colorscheme wombat
 Plug 'vim-airline/vim-airline'          " Status line
 Plug 'vim-airline/vim-airline-themes'   " Status line
 Plug 'octol/vim-cpp-enhanced-highlight' " Highlight cpp
+Plug 'r08ertliu/vim-log-highlighting'   " Highlight log
 
 " enhance
 Plug 'djoshea/vim-autoread'     " Auto reload while change
