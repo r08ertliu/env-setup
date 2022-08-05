@@ -6,7 +6,7 @@
 	colorMoved = default
 [delta]
 	navigate = true
-	side-by-side = true
+	side-by-side = false
 	minus-emph-style = syntax bold "#870000"
 	minus-style = syntax "#5f0000"
 	plus-emph-style = syntax bold "#008700"
