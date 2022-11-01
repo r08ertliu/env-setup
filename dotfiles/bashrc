@@ -12,8 +12,9 @@ path_remove()  { export $1=`echo -n ${!1} | awk -v RS=: -v ORS=: '$0 != "'$2'"' 
 
 # User specific environment
 path_prepend "PATH" "/usr/local/cuda/bin"
-path_prepend "PATH" "$HOME/go/bin"
 path_prepend "PATH" "/usr/local/go/bin"
+path_prepend "PATH" "$HOME/go/bin"
+path_prepend "PATH" "$HOME/.local/bin"
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -61,3 +62,4 @@ shopt -s histappend
 
 # Use silver searcher as FZF default command
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore={'cscope.*','.cscope.*',tags,.git} -l -g ""'
+. "$HOME/.cargo/env"

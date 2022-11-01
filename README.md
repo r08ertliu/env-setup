@@ -21,14 +21,18 @@ sudo apt install g++ make cmake
         - [bat](https://github.com/sharkdp/bat): A cat(1) clone with syntax highlighting and Git integration.
 
 ## Dependencies
-### Must have
+### Auto install
+```
+./install -p
+```
+### Manually install
 Ubuntu 18.04/20.04
 
     sudo apt install cscope universal-ctags silversearcher-ag
 
 Centos 8
 
-    sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-    sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+    sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux*
+    sudo sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux*
     sudo yum install --enablerepo=extras epel-release
     sudo yum install cscope ctags the_silver_searcher

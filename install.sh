@@ -5,10 +5,12 @@ PREFIX=${HOME}
 SCRIPT_FULL_PATH=$(readlink -f $0)
 SCRIPT_DIR=$(dirname ${SCRIPT_FULL_PATH})
 LOG_PATH=${SCRIPT_DIR}/log
+DISTRO=$(cat /etc/os-release | grep "^ID=" | awk -F"=" '{print $2}' | tr '[:upper:]' '[:lower:]' | cut -d"\"" -f2)
 
 function usage() {
 	echo "Usage: $0 [-ah]"
 	echo "    -a additional feature"
+	echo "    -p install prerequisite"
 	echo "    -h display usage"
 	exit 1
 }
@@ -18,25 +20,102 @@ function log() {
 }
 
 function check_cmd() {
-        which ${1} > /dev/null 2>&1
-        if [ ${?} != 0 ]; then
-		log "Command \"${1}\" not found"
-                exit 1
-        fi
+	which ${1} > /dev/null 2>&1
+	local ret=${?}
+	if [ ${ret} != 0 ]; then
+		if [ -z ${2} ] || [ ${2} != false ]; then
+			log "Command \"${1}\" not found"
+			exit ${ret}
+		fi
+	fi
+	return ${ret}
 }
 
 function exec_cmd() {
-        ${1} >> ${LOG_PATH}
-        if [ ${?} != 0 ]; then
-                log "Command \"${1}\" failed with ${?}"
-                exit ${?}
-        fi
+	${1} >> ${LOG_PATH}
+	if [ ${?} != 0 ]; then
+		log "Command \"${1}\" failed with ${?}"
+		exit ${?}
+	fi
 }
 
-while getopts "ah" opt; do
+function install_pre() {
+	if [[ $(whoami) != "root" ]]; then
+		echo "Need root permission to install package"
+	fi
+
+	local ret
+
+	check_cmd bat false
+	ret=${?}
+	local has_bat=$((! ret))
+
+	check_cmd delta false
+	ret=${?}
+	local has_delta=$((! ret))
+
+	case $DISTRO in
+	"centos")
+		;&
+	"almalinux")
+		;&
+	"rocky")
+		;&
+	"rhel")
+		sudo yum update
+		sudo yum install --enablerepo=extras epel-release
+		sudo yum install g++ make cmake cscope ctags the_silver_searcher
+
+		# install rust
+		if [ ${has_bat} == 0 ] || [ ${has_delta} == 0 ]; then
+			curl https://sh.rustup.rs -sSf | sh -s -- -y
+			source $HOME/.cargo/env
+			mkdir -p $HOME/.local/bin
+		fi
+
+		if [ ${has_bat} == 0 ]; then
+			git clone https://github.com/sharkdp/bat.git
+			pushd bat
+			cargo build --release
+			cp ./target/release/bat $HOME/.local/bin/bat
+			popd
+		fi
+
+		if [ ${has_delta} == 0 ]; then
+			git clone https://github.com/dandavison/delta.git
+			pushd delta
+			cargo build --release
+			cp ./target/release/delta $HOME/.local/bin/delta
+			popd
+		fi
+		;;
+	"ubuntu")
+		sudo apt update
+		sudo apt install g++ make cmake cscope universal-ctags silversearcher-ag
+		if [ ${has_bat} == 0 ]; then
+			wget -P /tmp https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
+			sudo dpkg -i /tmp/bat_0.22.1_amd64.deb
+		fi
+		if [ ${has_delta} == 0 ]; then
+			wget -P /tmp https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
+			sudo dpkg -i /tmp/git-delta_0.14.0_amd64.deb
+		fi
+		;;
+	*)
+		log "Unsupported distro '$DISTRO'."
+		exit 1
+		;;
+	esac
+}
+
+while getopts "aph" opt; do
 	case "${opt}" in
 		a)
 			ADDITIONAL=1
+			;;
+		p)
+			install_pre
+			exit 0
 			;;
 		h)
 			usage

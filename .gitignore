@@ -2,3 +2,5 @@ dotfiles/tmux/resurrect
 dotfiles/vim/.netrwhist
 *.swp
 log
+bat
+delta
