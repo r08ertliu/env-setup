@@ -62,18 +62,21 @@ function install_pre() {
 	"rocky")
 		;&
 	"rhel")
+		log "RPM distro"
 		sudo yum update
 		sudo yum install --enablerepo=extras epel-release
 		sudo yum install g++ make cmake cscope ctags the_silver_searcher
 
 		# install rust
 		if [ ${has_bat} == 0 ] || [ ${has_delta} == 0 ]; then
+			log "Install rust"
 			curl https://sh.rustup.rs -sSf | sh -s -- -y
 			source $HOME/.cargo/env
 			mkdir -p $HOME/.local/bin
 		fi
 
 		if [ ${has_bat} == 0 ]; then
+			log "Install bat"
 			git clone https://github.com/sharkdp/bat.git
 			pushd bat
 			cargo build --release
@@ -82,6 +85,7 @@ function install_pre() {
 		fi
 
 		if [ ${has_delta} == 0 ]; then
+			log "Install delta"
 			git clone https://github.com/dandavison/delta.git
 			pushd delta
 			cargo build --release
@@ -90,13 +94,16 @@ function install_pre() {
 		fi
 		;;
 	"ubuntu")
+		log "DEB distro"
 		sudo apt update
 		sudo apt install g++ make cmake cscope universal-ctags silversearcher-ag
 		if [ ${has_bat} == 0 ]; then
+			log "Install bat"
 			wget -P /tmp https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
 			sudo dpkg -i /tmp/bat_0.22.1_amd64.deb
 		fi
 		if [ ${has_delta} == 0 ]; then
+			log "Install delta"
 			wget -P /tmp https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
 			sudo dpkg -i /tmp/git-delta_0.14.0_amd64.deb
 		fi
