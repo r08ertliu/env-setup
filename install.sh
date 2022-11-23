@@ -65,7 +65,7 @@ function install_pre() {
 		log "RPM distro"
 		sudo yum update
 		sudo yum install --enablerepo=extras epel-release
-		sudo yum install g++ make cmake cscope ctags the_silver_searcher
+		sudo yum install g++ make cmake cscope ctags the_silver_searcher tmux
 
 		# install rust
 		if [ ${has_bat} == 0 ] || [ ${has_delta} == 0 ]; then
@@ -96,7 +96,7 @@ function install_pre() {
 	"ubuntu")
 		log "DEB distro"
 		sudo apt update
-		sudo apt install g++ make cmake cscope universal-ctags silversearcher-ag
+		sudo apt install g++ make cmake cscope universal-ctags silversearcher-ag tmux
 		if [ ${has_bat} == 0 ]; then
 			log "Install bat"
 			wget -P /tmp https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
