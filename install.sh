@@ -65,7 +65,7 @@ function install_pre() {
 		log "RPM distro"
 		sudo yum update
 		sudo yum install --enablerepo=extras epel-release
-		sudo yum install g++ make cmake cscope ctags the_silver_searcher tmux
+		sudo yum install gcc-c++ make cmake cscope ctags the_silver_searcher tmux
 
 		# install rust
 		if [ ${has_bat} == 0 ] || [ ${has_delta} == 0 ]; then
