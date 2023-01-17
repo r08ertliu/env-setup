@@ -57,6 +57,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 shopt -s histappend
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Use silver searcher as FZF default command
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore={'cscope.*','.cscope.*',tags,.git} -l -g ""'
