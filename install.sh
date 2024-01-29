@@ -99,13 +99,13 @@ function install_pre() {
 		sudo apt install g++ make cmake cscope universal-ctags silversearcher-ag tmux
 		if [ ${has_bat} == 0 ]; then
 			log "Install bat"
-			wget -P /tmp https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
-			sudo dpkg -i /tmp/bat_0.22.1_amd64.deb
+			wget -P /tmp https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
+			sudo dpkg -i /tmp/bat-musl_0.24.0_amd64.deb
 		fi
 		if [ ${has_delta} == 0 ]; then
 			log "Install delta"
-			wget -P /tmp https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
-			sudo dpkg -i /tmp/git-delta_0.14.0_amd64.deb
+			wget -P /tmp https://github.com/dandavison/delta/releases/download/0.16.5/git-delta-musl_0.16.5_amd64.deb
+			sudo dpkg -i /tmp/git-delta-musl_0.16.5_amd64.deb
 		fi
 		;;
 	*)
