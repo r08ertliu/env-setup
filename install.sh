@@ -223,6 +223,9 @@ ln -s ${PWD}/dotfiles/vimrc ${vimrc_path}
 log "Install fzf"
 if [ ! -f "${HOME}/.fzf/install" ]; then
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf >> ${LOG_PATH}
+else
+	pushd "${HOME}/.fzf" >> ${LOG_PATH}
+	git pull >> ${LOG_PATH}
 fi
 ${HOME}/.fzf/install --all >> ${LOG_PATH}
 
