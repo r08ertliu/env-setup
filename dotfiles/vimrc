@@ -1,12 +1,16 @@
 set tabstop=8    "tab width
 set shiftwidth=8 "indent width per level
-"set expandtab    "expand tab to space
+set noexpandtab  "do not expand tab to space
 set cursorline
 set autoindent
 set hlsearch     "highlight serarch result
 set incsearch    "auto jump while search
 set wildmenu     "command auto complete menu"
 set showcmd      "display vim command
+
+augroup FileTypeSpecificAutocommands
+    autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+augroup END
 
 " Allow us to use Ctrl-s and Ctrl-q as keybinds
 silent !stty -ixon
