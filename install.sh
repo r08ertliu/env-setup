@@ -32,7 +32,7 @@ function check_cmd() {
 }
 
 function exec_cmd() {
-	${1} >> ${LOG_PATH}
+	(bash -c "${1}") >> ${LOG_PATH}
 	if [ ${?} != 0 ]; then
 		log "Command \"${1}\" failed with ${?}"
 		exit ${?}
