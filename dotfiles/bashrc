@@ -66,8 +66,13 @@ HISTFILESIZE=2000
 shopt -s histappend
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
-# Use silver searcher as FZF default command
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore={'cscope.*','.cscope.*',tags,.git} -l -g ""'
+# Use ripgrep as FZF default command
+export FZF_DEFAULT_COMMAND='
+	rg --files --no-ignore --hidden \
+	--glob "!cscope.*" \
+	--glob "!.cscope.*" \
+	--glob "!tags" \
+	--glob "!.git/*"'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env

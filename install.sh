@@ -65,7 +65,7 @@ function install_pre() {
 		log "RPM distro"
 		sudo yum update
 		sudo yum install --enablerepo=extras epel-release
-		sudo yum install gcc-c++ make cmake cscope ctags the_silver_searcher tmux
+		sudo yum install gcc-c++ make cmake cscope ctags ripgrep tmux
 
 		# install rust
 		if [ ${has_bat} == 0 ] || [ ${has_delta} == 0 ]; then
@@ -96,7 +96,7 @@ function install_pre() {
 	"ubuntu")
 		log "DEB distro"
 		sudo apt update
-		sudo apt install g++ make cmake cscope universal-ctags silversearcher-ag tmux
+		sudo apt install g++ make cmake cscope universal-ctags ripgrep tmux
 		local bat_ver="0.24.0"
 		local delta_ver="0.17.0"
 		if [ ${has_bat} == 0 ]; then
