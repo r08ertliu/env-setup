@@ -7,6 +7,9 @@ set hlsearch     "highlight serarch result
 set incsearch    "auto jump while search
 set wildmenu     "command auto complete menu"
 set showcmd      "display vim command
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,default,latin1
+set fileencoding=utf-8
 
 augroup FileTypeSpecificAutocommands
     autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
